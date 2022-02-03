@@ -23,30 +23,30 @@ const savePass = new POSTPROCESSING.SavePass(saveTarget)
 const burnInEffect = new GlslEffect('burn-in', { 
 		uniforms: new Map([
 			[ 'burnInSource', new THREE.Uniform(savePass.renderTarget.texture)], 
-			[ 'burnInTime', new THREE.Uniform(0.4)], 
+			[ 'burnInTime', new THREE.Uniform(0.1)],
 		]),
 	}
 );
 
-const jitter = 0.3;
-const screenCurvature = 0.2;
+const jitter = 0.1;
+const screenCurvature = 0.08;
 
 const retroEffect = new GlslEffect('retro', {
 		uniforms: new Map([
-			[ 'fontColor', new THREE.Uniform(new THREE.Vector3(200/255, 255/255, 110/255))], 
-			[ 'backgroundColor', new THREE.Uniform(new THREE.Vector3(0.0, 0.05, 0.0))], 
-			[ 'chromaColor', new THREE.Uniform(1.0)], 
-			[ 'staticNoise', new THREE.Uniform(0.2)], 
+			[ 'fontColor', new THREE.Uniform(new THREE.Vector3(160/255, 255/255, 90/255))],
+			[ 'backgroundColor', new THREE.Uniform(new THREE.Vector3(0.0, 0.04, 0.0))],
+			[ 'chromaColor', new THREE.Uniform(1.0)],
+			[ 'staticNoise', new THREE.Uniform(0.1)],
 			[ 'noiseSource', new THREE.Uniform(null)], 
-			[ 'horizontalSyncStrength', new THREE.Uniform(0.250)], 
-			[ 'horizontalSyncFrequency', new THREE.Uniform(0.30)], 
+			[ 'horizontalSyncStrength', new THREE.Uniform(0.2)],
+			[ 'horizontalSyncFrequency', new THREE.Uniform(0.10)],
 			[ 'jitter', new THREE.Uniform(new THREE.Vector2(0.007 * jitter, 0.002 * jitter))], 
-			[ 'glowingLine', new THREE.Uniform(0.4)], 
-			[ 'flickering', new THREE.Uniform(0.2)], 
-			[ 'ambientLight', new THREE.Uniform(0.05)], 
-			[ 'pixelHeight', new THREE.Uniform(8.0)], 
-			[ 'pixelization', new THREE.Uniform(false)], 
-			[ 'rbgSplit', new THREE.Uniform(0.2)], 
+			[ 'glowingLine', new THREE.Uniform(0.2)],
+			[ 'flickering', new THREE.Uniform(0.1)],
+			[ 'ambientLight', new THREE.Uniform(0.0005)],
+			[ 'pixelHeight', new THREE.Uniform(10.0)],
+			[ 'pixelization', new THREE.Uniform(false)],
+			[ 'rbgSplit', new THREE.Uniform(0.05)],
 		]),
 	}
 );
@@ -59,8 +59,8 @@ new THREE.TextureLoader().load(resolve(__dirname, '../../images/allNoise512.png'
 });
 
 const bloomEffect = new POSTPROCESSING.BloomEffect({
-	kernelSize: 3,
-	distinction: 0.2,
+	kernelSize: 1,
+	distinction: 0.1,
 	// blendFunction: POSTPROCESSING.BlendFunction.AVERAGE,
 });
 
